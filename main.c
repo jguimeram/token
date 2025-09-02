@@ -18,6 +18,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
+
+typedef enum{
+  TOK_NUM,
+  TOK_ADD,
+  TOK_SUB,
+  TOK_INV,
+}TokType;
 
 
 typedef struct{
@@ -32,15 +40,24 @@ int main(int argc, char **argv){
       return 1;
     }
   
-    char *p = argv[1];
+    const char *p = argv[1];
+    char *end;
     printf("size of p: %ld\n", sizeof(p)); //8 bytes
     printf("size of *p: %ld\n", sizeof(*p)); //1 byte (char)
-                                           
+
+    long int sum = 0;
+
     while(*p){
-      printf("%c", *p);
-       
+      if(isdigit(*p)){
+        sum = strtol(p, &end, 10);  
+        printf("partial sum: %ld\n", sum);
+        p++;
+      }
       p++;
-    } 
-     
+    }
+  
+  //printf("sum: %ld\n", sum);
+
+    
     return 0;
 }
