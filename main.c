@@ -48,10 +48,10 @@ int main(int argc, char **argv){
     long int sum = 0;
 
     while(*p){
-      while(isdigit(*p)){
+      if(isdigit(*p)){
         sum = strtol(p, &end, 10);  
         printf("partial sum: %ld\n", sum);
-        p++;
+        p = end;
       }
       p++;
     }
