@@ -14,7 +14,7 @@
  *   Organization:  
  *
  * =====================================================================================
- */
+*/ 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -29,9 +29,12 @@ typedef enum{
 
 
 typedef struct{
-  char *type;
+  TokType type;
   long value;
 }Token;
+
+
+
 
 int main(int argc, char **argv){
 
@@ -42,16 +45,26 @@ int main(int argc, char **argv){
   
     const char *p = argv[1];
     char *end;
-    printf("size of p: %ld\n", sizeof(p)); //8 bytes
+   
+    printf("size of p: %ld\n", sizeof(p)); //8 bytes:
     printf("size of *p: %ld\n", sizeof(*p)); //1 byte (char)
-
-    long int sum = 0;
 
     while(*p){
       if(isdigit(*p)){
-        sum = strtol(p, &end, 10);  
-        printf("partial sum: %ld\n", sum);
+        Token t;
+        t.value = strtol(p, &end, 10);  
+        t.type = TOK_NUM;
+        printf("partial sum: %ld\n", t.value);
+        printf("type: %d\n", t.type);
         p = end;
+      }else if(*p == '+'){
+        Token t;
+        t.value = 0;
+        t.type = TOK_ADD;
+      }else if(*p == '-'){
+        Token t;
+        t.value = 0;
+        t.type = TOK_SUB;
       }
       p++;
     }

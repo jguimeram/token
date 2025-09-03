@@ -1,0 +1,9 @@
+Mmain	main.c	/^int main(int argc, char **argv){$/
+TOK_ADD	main.c	25
+TOK_INV	main.c	27
+TOK_NUM	main.c	24
+TOK_SUB	main.c	26
+TokType	main.c	28
+Token	main.c	34
+type	main.c	32
+value	main.c	33
