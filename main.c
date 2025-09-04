@@ -20,7 +20,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_CAPACITY 6 
+#define MAX_CAPACITY 3 
 
 typedef enum{
   TOK_NUM,
@@ -57,9 +57,7 @@ int main(int argc, char **argv){
              if(isdigit(*p)){
                 t.value = strtol(p, &end, 10);  
                 t.type = TOK_NUM;
-                exp[i] = t;
                 p = end;
-                p++;
               }else if(*p == '+'){
                 t.value = 0;
                 t.type = TOK_ADD;
@@ -70,6 +68,7 @@ int main(int argc, char **argv){
                 p++;
              }
              exp[i++] = t; //Post-increment (i++) → returns the current value of i, then increments i afterwards.
+             printf("value: %ld\n", exp[i-1].value);
     }
 
 
