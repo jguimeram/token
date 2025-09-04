@@ -1,2 +1,2 @@
 main:
-	gcc main.c -Wall -Wextra -o main.o
+	gcc -g main.c -Wall -Wextra -o main.o
