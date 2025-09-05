@@ -68,8 +68,15 @@ int main(int argc, char **argv){
                 p++;
              }
              exp[i++] = t; //Post-increment (i++) → returns the current value of i, then increments i afterwards.
-             printf("value: %ld\n", exp[i-1].value);
+
     }
+
+  for(int i = 0; i < MAX_CAPACITY; i++){
+    if(exp[i].type == TOK_NUM){
+      printf("num: %ld\n", exp[i].value);
+    }
+  
+  }
 
 
     return 0;
