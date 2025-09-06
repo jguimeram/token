@@ -71,13 +71,24 @@ int main(int argc, char **argv){
 
     }
 
+   
+  long res = 0;  
+
   for(int i = 0; i < MAX_CAPACITY; i++){
+
     if(exp[i].type == TOK_NUM){
-      printf("num: %ld\n", exp[i].value);
+        res = exp[i].value; 
+    }else if (exp[i].type == TOK_ADD) {
+       res = res + exp[++i].value; 
+    }else if (exp[i].type == TOK_SUB){
+       res = res - exp[++i].value; 
+
     }
-  
+     
   }
 
+    printf("%ld", res);
 
+    free(exp);
     return 0;
 }
