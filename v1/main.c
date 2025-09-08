@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#define MAX_CAPACITY 5 
+#define MAX_CAPACITY 1024 
 
 typedef enum{
   TOK_NUM,
@@ -35,7 +35,25 @@ typedef struct{
 }Token;
 
 
+long calculate(int *len, Token *exp){
 
+  
+  long res = 0;  
+
+  for(int i = 0; i < *len; i++){
+    if(exp[i].type == TOK_NUM){
+        res = exp[i].value; 
+    }else if (exp[i].type == TOK_ADD) {
+       res = res + exp[++i].value; 
+    }else if (exp[i].type == TOK_SUB){
+    res = res - exp[++i].value; 
+    }
+  }
+
+
+    return res;
+
+}
 
 int main(int argc, char **argv){
 
@@ -58,7 +76,6 @@ int main(int argc, char **argv){
             return -1;
             }
 
-
             Token t;
              if(isdigit(*p)){
                 t.value = strtol(p, &end, 10);  
@@ -76,21 +93,10 @@ int main(int argc, char **argv){
              exp[len++] = t; //Post-increment (i++) → returns the current value of i, then increments i afterwards.
     }
 
-  
-  long res = 0;  
+    long res = calculate(&len, exp);
 
-  for(int i = 0; i < len; i++){
-    printf("current i value: %d\n", i);
-    if(exp[i].type == TOK_NUM){
-        res = exp[i].value; 
-    }else if (exp[i].type == TOK_ADD) {
-       res = res + exp[++i].value; 
-    }else if (exp[i].type == TOK_SUB){
-    res = res - exp[++i].value; 
-    }
-  }
 
-    printf("res: %ld", res);
+    printf("result: %ld\n", res);
 
     free(exp);
     return 0;
