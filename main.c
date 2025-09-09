@@ -15,6 +15,7 @@
  *
  * =====================================================================================
 */ 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -35,18 +36,18 @@ typedef struct{
 }Token;
 
 
-long calculate(int *len, Token *exp){
+long calculate(int *len, Token *token){
 
   
   long res = 0;  
 
   for(int i = 0; i < *len; i++){
-    if(exp[i].type == TOK_NUM){
-        res = exp[i].value; 
-    }else if (exp[i].type == TOK_ADD) {
-       res = res + exp[++i].value; 
-    }else if (exp[i].type == TOK_SUB){
-    res = res - exp[++i].value; 
+    if(token[i].type == TOK_NUM){
+        res = token[i].value; 
+    }else if (token[i].type == TOK_ADD) {
+       res = res + token[++i].value; 
+    }else if (token[i].type == TOK_SUB){
+    res = res - token[++i].value; 
     }
   }
 
@@ -91,7 +92,7 @@ int main(int argc, char **argv){
                 p++;
              }
              exp[len++] = t; //Post-increment (i++) → returns the current value of i, then increments i afterwards.
-    }
+     }
 
     long res = calculate(&len, exp);
 
